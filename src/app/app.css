@@ -1,0 +1,18 @@
+.num-records {
+    font-size: 10pt;
+    text-align: center;
+    width: 100%;
+}
+.add-button {
+    background: url('../assets/icons/add.circle.svg') no-repeat center;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+}
+
+.edit-button {
+    background: url('../assets/icons/edit-circle.svg') no-repeat center;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+}

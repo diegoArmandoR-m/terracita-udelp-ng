@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Terracita</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+    data-bs-target="#navbarCatalogos" aria-controls="navbarCatalogos" 
+    aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCatalogos">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown" *ngFor="let m of menu">
+          <a class="nav-link dropdown-toggle" href="#" 
+          role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{m.description | transloco}}
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let v of m.views"><a class="dropdown-item" 
+              routerLink="{{v.url}}" 
+              routerLinkActive="active">{{v.description | transloco}}</a></li>
+          </ul>
+        </li>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/punto-venta" 
+              routerActive="active">{{"menu.punto-venta" | transloco}}</a>
+            </li>
+          </ul>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container pt-5">
+  <router-outlet />
+</div>
+
+
+
+
+
+
+
+

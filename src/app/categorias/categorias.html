@@ -1,0 +1,22 @@
+<button type="button" class="btn btn-link add-button"></button>
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">{{"categories.name" | transloco}}</th>
+      <th scope="col">{{"categories.description" | transloco}}</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of categorias">
+      <td>{{c.nombre}}</td>
+      <td>{{c.descripcion}}</td>
+      <td> 
+        <button type="button" class="btn btn-link edit-button"></button>
+      </td>
+    </tr>
+   
+  </tbody>
+</table>
+<div class="num-records">{{categorias.length}} {{"labels.num-records" | transloco}}</div>

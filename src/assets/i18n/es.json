@@ -1,0 +1,39 @@
+{
+    "views":{
+        "producto":"Productos",
+        "categoria":"Categorías",
+        "unidad-medida":"Unidades de Medida",
+        "proveedor":"Proveedores",
+        "metodo-pago":"Métodos de Pago",
+        "compras":"Compras",
+        "ventas":"Ventas",
+        "inventario":"Inventario",
+        "movimientos-inventario":"Mov. de Inventario",
+        "apertura-caja":"Apertura Caja",
+        "cierre-caja":"Cierre Caja",
+        "otros-movimientos":"Otros Movimientos",
+        "usuarios":"Usuarios"
+
+
+    },
+    "menu":{
+        "catalogos-generales": "Catálogos Generales",
+        "procesos":"Procesos",
+        "administracion":"Administración",
+        "punto-venta":"Punto de Venta"
+    },
+    "buttons":{
+        "add-new":"Agregar",
+        "edit":"Editar",
+        "delete":"Eliminar",
+        "save":"Guardar",
+        "cancel":"Cancelar"
+    },
+    "categories":{
+        "name":"Nombre",
+        "description":"Descripción"
+    },
+    "labels":{
+        "num-records":"Número de registros"
+    }
+}
