@@ -1,10 +1,10 @@
-<button type="button" class="btn btn-link add-button"></button>
+<button type="button" class="btn btn-link add-button" (click)="openAddModal()"></button>
 <br>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">{{"categories.name" | transloco}}</th>
-      <th scope="col">{{"categories.description" | transloco}}</th>
+      <th scope="col">{{ "categorias.name" | transloco }}</th>
+      <th scope="col">{{ "categorias.description" | transloco }}</th>
       <th scope="col">&nbsp;</th>
     </tr>
   </thead>
@@ -13,10 +13,19 @@
       <td>{{c.nombre}}</td>
       <td>{{c.descripcion}}</td>
       <td> 
-        <button type="button" class="btn btn-link edit-button"></button>
+        <button type="button" class="btn btn-link edit-button" (click)="openEditModal(c)"></button>
       </td>
     </tr>
    
   </tbody>
 </table>
 <div class="num-records">{{categorias.length}} {{"labels.num-records" | transloco}}</div>
+
+<!--Modal-->
+<app-categoria-modal [showModal]="showModal" 
+[modalTitle]="modalTitle" [data]="categoria" 
+(closeModalEvent)="closeModalEvent()" 
+(saveEvent)="saveEvent($event)"></app-categoria-modal>
+
+<app-message [showModal]="showModalMessage" [messageTitle]="modalTitleMessage"
+[messageBody]="messageBody" (aceptar)="closeMessageModal($event)" [uri]="uri"></app-message>

@@ -22,6 +22,9 @@ import { UnidadesMedida } from './unidades-medida/unidades-medida';
 import { Ventas } from './ventas/ventas';
 import { MovimientoInventario } from './movimiento-inventario/movimiento-inventario';
 import { CategoriaModalComponent } from './categorias/categoria-modal/categoria-modal.component';
+import { MessageComponent } from './message/message.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MetodoPagoModalComponent } from './metodos-pago/metodo-pago-modal/metodo-pago-modal.component';
 
 
 
@@ -30,12 +33,14 @@ import { CategoriaModalComponent } from './categorias/categoria-modal/categoria-
     App,
     Categorias,
     CategoriaModalComponent,
+    MessageComponent,
+    MetodosPago,
+    MetodoPagoModalComponent,
    /* CierreCaja,
     AperturaCaja,
     Compras,
     Home,
     Inventario,
-    MetodosPago,
     OtrosMovimientos,
     Productos,
     Proveedores,
@@ -51,7 +56,9 @@ import { CategoriaModalComponent } from './categorias/categoria-modal/categoria-
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    TranslocoRootModule
+    TranslocoRootModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [
     App

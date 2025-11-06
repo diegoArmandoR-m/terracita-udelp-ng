@@ -16,3 +16,7 @@
     height: 22px;
     position: absolute;
 }
+.modal-background{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+

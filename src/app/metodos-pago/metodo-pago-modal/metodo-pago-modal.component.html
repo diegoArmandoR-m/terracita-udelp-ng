@@ -10,14 +10,15 @@
       <div class="modal-body">
         <form [formGroup]="formData">
           <div class="mb-3">
-            <label class="form-label">{{"categorias.name" | transloco}}</label>
+            <label class="form-label">{{"metodos-pago.name" | transloco}}</label>
             <input type="text" class="form-control" formControlName="nombre" id="nombre">
             <div *ngIf="formData.get('nombre')?.invalid" 
             class="text-danger mt-1">
             {{ "labels.required-field" | transloco }}</div>
           </div>
+
           <div class="mb-3">
-            <label class="form-label">{{"categorias.description" | transloco}}</label>
+            <label class="form-label">{{"metodos-pago.description" | transloco}}</label>
             <input type="text" class="form-control" formControlName="descripcion" id="descripcion">
             <div *ngIf="formData.get('descripcion')?.invalid" 
             class="text-danger mt-1">
