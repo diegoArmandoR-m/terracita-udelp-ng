@@ -1,0 +1,61 @@
+<div class="modal modal-background fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"
+[class.show]="showModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{modalTitle | transloco}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formData">
+
+          <div class="mb-3">
+            <label class="form-label">{{"productos.name" | transloco}}</label>
+            <input type="text" class="form-control" formControlName="nombre" id="nombre">
+            <div *ngIf="formData.get('nombre')?.invalid" 
+            class="text-danger mt-1">
+            {{ "labels.required-field" | transloco }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">{{"productos.precio" | transloco}}</label>
+            <input type="text" class="form-control" formControlName="descripcion" id="descripcion">
+            <div *ngIf="formData.get('precio')?.invalid" 
+            class="text-danger mt-1">
+            {{ "labels.required-field" | transloco }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">{{"productos.existencia" | transloco}}</label>
+            <input type="text" class="form-control" formControlName="descripcion" id="descripcion">
+            <div *ngIf="formData.get('existencia')?.invalid" 
+            class="text-danger mt-1">
+            {{ "labels.required-field" | transloco }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">{{"productos.categoria" | transloco}}</label>
+            <input type="text" class="form-control" formControlName="descripcion" id="descripcion">
+            <div *ngIf="formData.get('categoria')?.invalid" 
+            class="text-danger mt-1">
+            {{ "labels.required-field" | transloco }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">{{"productos.estado" | transloco}}</label>
+            <input type="text" class="form-control" formControlName="descripcion" id="descripcion">
+            <div *ngIf="formData.get('estado')?.invalid" 
+            class="text-danger mt-1">
+            {{ "labels.required-field" | transloco }}</div>
+          </div>
+
+          <input type="hidden" formControlName="id" id="id">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveModal()">{{"buttons.save" | transloco}}</button>
+      </div>
+    </div>
+  </div>
+</div>

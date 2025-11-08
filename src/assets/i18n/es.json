@@ -41,8 +41,17 @@
         "name":"Nombre",
         "description":"Descripción",
         "add-metodo-pago": "Agregar Metodo de Pago",
-        "edit-category": "Editar Categoria"
+        "edit-category": "Editar Metodo de Pago"
 
+    },
+    "productos":{
+        "name":"Nombre",
+        "precio":"Precio",
+        "existencia":"Existencia",
+        "categoria":"Categoría",
+        "estado":"Estado",
+        "add-producto": "Agregar Producto",
+        "edit-category": "Editar Producto"
     },
     "labels":{
         "num-records":"Número de registros",
