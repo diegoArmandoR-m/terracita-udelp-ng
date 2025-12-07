@@ -7,13 +7,14 @@ import { Proveedores } from './proveedores/proveedores';
 import { MetodosPago } from './metodos-pago/metodos-pago';
 import { Compras } from './compras/compras';
 import { Ventas } from './ventas/ventas';
-import { Inventario } from './inventario/inventario';
-import { MovimientoInventario } from './movimiento-inventario/movimiento-inventario';
+import { Inventarios } from './inventario/inventario';
+import { MovimientosInventario } from './movimientos-inventario/movimientos-inventario';
 import { AperturaCaja } from './apertura-caja/apertura-caja';
-import { CierreCaja } from './cierre-caja/cierre-caja';
 import { OtrosMovimientos } from './otros-movimientos/otros-movimientos';
 import { Usuarios } from './usuarios/usuarios';
 import { PuntoVenta } from './punto-venta/punto-venta';
+import { DetallesCompra } from './detalles-compra/detalles-compra';
+import { DetallesVenta } from './detalles-venta/detalles-venta';
 
 export const routes: Routes = [
     {path:"", component: Home},
@@ -23,11 +24,12 @@ export const routes: Routes = [
     {path:"catalogos-generales/proveedores", component: Proveedores},
     {path:"catalogos-generales/metodos-pagos", component: MetodosPago},
     {path:"procesos/compras", component: Compras},
+    {path:"procesos/detalles-compra", component: DetallesCompra},
     {path:"procesos/ventas", component: Ventas},
-    {path:"procesos/inventario", component: Inventario},
-    {path:"procesos/movimiento-inventario", component: MovimientoInventario},
+    {path:"procesos/detalles-venta", component: DetallesVenta},
+    { path: 'procesos/inventario', component: Inventarios },
+    {path:"procesos/movimientos-inventario", component: MovimientosInventario },
     {path:"procesos/apertura-caja", component: AperturaCaja},
-    {path:"procesos/cierre-caja", component: CierreCaja},
     {path:"procesos/otros-movimientos", component: OtrosMovimientos},
     {path:"administracion/usuarios", component: Usuarios},
     {path:"punto-venta", component: PuntoVenta},

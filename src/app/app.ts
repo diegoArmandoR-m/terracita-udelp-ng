@@ -26,11 +26,12 @@ export class App {
     {description: "menu.procesos",
       views:[
         {description:"views.compras",url:"/procesos/compras"},
+        {description:"views.detalles-compra",url:"/procesos/detalles-compra"},
         {description:"views.ventas",url:"/procesos/ventas"},
+        {description:"views.detalles-venta",url:"/procesos/detalles-venta"},
         {description:"views.inventario",url:"/procesos/inventario"},
-        {description:"views.movimientos-inventario",url:"/procesos/movimiento-inventario"},
+        {description:"views.movimientos-inventario",url:"/procesos/movimientos-inventario"},
         {description:"views.apertura-caja",url:"/procesos/apertura-caja"},
-        {description:"views.cierre-caja",url:"/procesos/cierre-caja"},
         {description:"views.otros-movimientos",url:"/procesos/otros-movimientos"}
     ]},
     {description: "menu.administracion",

@@ -1,1 +1,61 @@
-<p>ventas works!</p>
+<button type="button" class="btn btn-link add-button" (click)="openAddModal()">
+  {{"buttons.add-new" | transloco}}
+</button>
+<br>
+<br>
+
+<table class="table table-striped diseñoTabla">
+  <thead>
+    <tr>
+      <th scope="col">{{ "ventas.fechaHora"   | transloco }}</th>
+      <th scope="col">{{ "ventas.total"       | transloco }}</th>
+      <th scope="col">{{ "ventas.metodo-pago" | transloco }}</th>
+      <th scope="col">{{ "ventas.usuario"     | transloco }}</th>
+      <th scope="col">{{ "ventas.estado"      | transloco }}</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let v of ventas">
+      <td>{{ v.fechaHora | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>{{ v.total | number:'1.2-2' }}</td>
+
+      <!-- En la tabla solo mostramos el ID -->
+      <td>{{ v.idMetodoPago?.id }}</td>
+      <td>{{ v.idUsuario?.id }}</td>
+
+      <td>
+        {{ v.estado ? ('labels.activo' | transloco)
+                    : ('labels.inactivo' | transloco) }}
+      </td>
+      <td>
+        <button type="button" class="btn btn-link edit-button"
+                (click)="openEditModal(v)"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="num-records">
+  {{ ventas.length }} {{ "labels.num-records" | transloco }}
+</div>
+
+<!-- Modal de venta -->
+<app-venta-modal
+  [showModal]="showModal"
+  [modalTitle]="modalTitle"
+  [data]="venta"
+  [metodosPago]="metodosPago"
+  [usuarios]="usuarios"
+  (closeModalEvent)="closeModalEvent()"
+  (saveEvent)="saveEvent($event)">
+</app-venta-modal>
+
+<!-- Mensaje genérico -->
+<app-message
+  [showModal]="showModalMessage"
+  [messageTitle]="modalTitleMessage"
+  [messageBody]="messageBody"
+  (aceptar)="closeMessageModal($event)"
+  [uri]="uri">
+</app-message>

@@ -1,0 +1,250 @@
+/* ===== Layout general ===== */
+.container {
+  margin-top: 30px;
+}
+
+/* Cards (panel de venta, categorías, total y método de pago) */
+.card {
+  background-color: #c4eade;        /* verde muy claro como filas de la tabla */
+  border-radius: 16px;
+  border: 1px solid #2f7e5400;        /* verde del header/botón Agregar */
+  box-shadow: none;
+}
+
+/* Texto de “Total” y monto */
+.lbl-total {
+  font-size: 16pt;
+  font-weight: bold;
+  color: #015f42;                    /* verde texto como en la tabla */
+}
+
+.lbl-monto {
+  font-size: 18pt;
+  font-weight: bold;
+  color: #015f42;
+  margin-left: 4px;
+}
+
+/* Botón Pagar (mismo estilo que Agregar) */
+.btn-info {
+  color: #ffffff;
+  background-color: #2f7e54;        /* mismo verde del botón Agregar */
+  border-color: #2f7e54;
+  border-radius: 999px;             /* pill redondo como Agregar */
+  padding: 8px 32px;
+  font-weight: 600;
+}
+
+.btn-info:hover,
+.btn-info:focus {
+  background-color: #276948;
+  border-color: #276948;
+  color: #ffffff;
+}
+
+/* Controles de cantidad (+ / - y número) */
+.cantidad-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cantidad-controls .cantidad {
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Total por línea en la lista de productos agregados */
+.valor-total {
+  font-weight: 700;
+}
+
+/* Combo de método de pago */
+.metodo-pago-container {
+  min-width: 220px;
+}
+
+/* Acordeón de categorías (header verde como encabezado de tabla) */
+.accordion-button {
+  background-color: #2f7e54;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #276948;
+  color: #ffffff;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.15rem rgba(47, 126, 84, 0.4);
+}
+
+.accordion-body {
+  background-color: #c4eade;
+}
+
+/* Texto de “No hay productos agregados” centrado y en verde oscuro */
+.sin-productos {
+  color: #015f42;
+  font-weight: 500;
+}
+
+.cambioo {
+  background-color: #2f7e54;   /* verde del proyecto */
+  color: #ffffff;
+  border-color: #2f7e54;
+
+  /* IMPORTANTES para poder cambiar la flecha */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Flecha blanca en SVG incrustado */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3E%3Cpath d='M3.204 5.5L8 10.296l4.796-4.796.708.708L8 11.712 2.496 6.208z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .75rem center; /* misma posición que Bootstrap */
+  background-size: 16px 12px;
+  padding-right: 2.5rem; /* dejar espacio para la flecha */
+}
+
+/* Lista de productos dentro del acordeón */
+.lista-productos {
+  list-style: none;          /* quita el puntito • */
+  margin: 0;
+  padding: 0;
+}
+
+.item-producto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  margin-bottom: 6px;
+  border-radius: 5%;      /* pill */
+  background-color: #daf5eb; /* un poco más claro que la card */
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.item-producto:hover {
+  background-color: #c4eade;
+  transform: translateY(-1px);
+}
+
+/* Contenedor de nombre + precio */
+.info-producto {
+  display: flex;
+  flex-direction: column;    /* nombre arriba, precio abajo */
+  text-align: left;
+}
+
+.nombre-producto {
+  font-weight: 600;
+  color: #015f42;
+}
+
+.precio-producto {
+  font-size: 0.85rem;
+  color: #335b4b;
+}
+
+/* Botón + del producto, con la misma paleta que el proyecto */
+.btn-add-producto {
+  background-color: #2f7e54;
+  border-color: #2f7e54;
+  color: #ffffff;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.btn-add-producto:hover,
+.btn-add-producto:focus {
+  background-color: #276948;
+  border-color: #276948;
+  color: #ffffff;
+}
+
+/* ===== Fila del carrito ===== */
+.item-carrito {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  border-radius: 16px;
+  background-color: #c4eade;   /* mismo verde claro de las cards */
+}
+
+/* Nombre del producto */
+.carrito-nombre {
+  flex: 1;
+  text-align: left;
+  font-weight: 600;
+  color: #015f42;
+}
+
+/* Controles de cantidad */
+.carrito-controles {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.btn-cantidad {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #668d7c;
+  background-color: #e4f5ee;
+  color: #335b4b;
+  font-weight: 600;
+  padding: 0;
+}
+
+.btn-cantidad:hover {
+  background-color: #d4ede4;
+}
+
+.carrito-cantidad {
+  font-weight: 600;
+  color: #335b4b;
+}
+
+/* Total + botón rojo */
+.carrito-total {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carrito-precio {
+  font-weight: 700;
+  color: #015f42;
+}
+
+/* Botón rojo de eliminar (se mantiene rojo, pero más bonito) */
+.btn-delete-producto {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background-color: #d9534f;   /* rojo tipo Bootstrap danger */
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-delete-producto:hover {
+  background-color: #c5413d;
+}

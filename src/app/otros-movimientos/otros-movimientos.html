@@ -1,1 +1,53 @@
-<p>otros-movimientos works!</p>
+<button type="button" class="btn btn-link add-button" (click)="openAddModal()">
+  {{ "buttons.add-new" | transloco }}
+</button>
+<br>
+<br>
+
+<table class="table table-striped diseñoTabla">
+  <thead>
+    <tr>
+      <th scope="col">{{ "otros-movimientos.nombre"      | transloco }}</th>
+      <th scope="col">{{ "otros-movimientos.es-entrada"  | transloco }}</th>
+      <th scope="col">{{ "otros-movimientos.descripcion" | transloco }}</th>
+      <th scope="col">{{ "otros-movimientos.estado"      | transloco }}</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of otrosMovimientos">
+      <td>{{ o.name }}</td>
+      <td>{{ o.esEntrada ? 'Entrada' : 'Salida' }}</td>
+      <td>{{ o.descripcion }}</td>
+      <td>
+        {{ o.activo ? ('labels.activo' | transloco)
+                    : ('labels.inactivo' | transloco) }}
+      </td>
+      <td>
+        <button type="button"
+                class="btn btn-link edit-button"
+                (click)="openEditModal(o)"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="num-records">
+  {{ otrosMovimientos.length }} {{ "labels.num-records" | transloco }}
+</div>
+
+<app-otro-movimiento-modal
+  [showModal]="showModal"
+  [modalTitle]="modalTitle"
+  [data]="otroMovimiento"
+  (closeModalEvent)="closeModalEvent()"
+  (saveEvent)="saveEvent($event)">
+</app-otro-movimiento-modal>
+
+<app-message
+  [showModal]="showModalMessage"
+  [messageTitle]="modalTitleMessage"
+  [messageBody]="messageBody"
+  (aceptar)="closeMessageModal($event)"
+  [uri]="uri">
+</app-message>

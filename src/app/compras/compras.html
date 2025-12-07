@@ -1,1 +1,60 @@
-<p>compras works!</p>
+<button type="button" class="btn btn-link add-button" (click)="openAddModal()">
+  {{"buttons.add-new" | transloco}}
+</button>
+<br>
+<br>
+
+<table class="table table-striped diseñoTabla">
+  <thead>
+    <tr>
+      <th scope="col">{{ "compras.proveedor" | transloco }}</th>
+      <th scope="col">{{ "compras.fechaHora" | transloco }}</th>
+      <th scope="col">{{ "compras.total"     | transloco }}</th>
+      <th scope="col">{{ "compras.usuario"   | transloco }}</th>
+      <th scope="col">{{ "compras.estado"    | transloco }}</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of compras">
+      <td>{{ c.proveedor?.id }}</td>
+      <td>{{ c.fechaHora | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>{{ c.total | number:'1.2-2' }}</td>
+
+      <td>{{ c.usuario?.id }}</td>
+
+      <td>
+        {{ c.estado ? ('labels.activo' | transloco) : ('labels.inactivo' | transloco) }}
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-link edit-button"
+          (click)="openEditModal(c)">
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="num-records">
+  {{ compras.length }} {{ "labels.num-records" | transloco }}
+</div>
+
+<app-compra-modal
+  [showModal]="showModal"
+  [modalTitle]="modalTitle"
+  [data]="compra"
+  [proveedores]="proveedoresModal"
+  [usuarios]="usuariosModal"
+  (closeModalEvent)="closeModalEvent()"
+  (saveEvent)="saveEvent($event)">
+</app-compra-modal>
+
+<app-message
+  [showModal]="showModalMessage"
+  [messageTitle]="modalTitleMessage"
+  [messageBody]="messageBody"
+  (aceptar)="closeMessageModal($event)"
+  [uri]="uri">
+</app-message>

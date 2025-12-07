@@ -6,11 +6,12 @@
         "proveedor":"Proveedores",
         "metodo-pago":"Métodos de Pago",
         "compras":"Compras",
+        "detalles-compra":"Detalles de Compra",
         "ventas":"Ventas",
+        "detalles-venta":"Detalles de Venta",
         "inventario":"Inventario",
         "movimientos-inventario":"Mov. de Inventario",
         "apertura-caja":"Apertura Caja",
-        "cierre-caja":"Cierre Caja",
         "otros-movimientos":"Otros Movimientos",
         "usuarios":"Usuarios"
 
@@ -28,7 +29,8 @@
         "delete":"Eliminar",
         "save":"Guardar",
         "cancel":"Cancelar",
-        "aceptar": "aceptar"
+        "aceptar": "aceptar",
+        "pay":"Pagar"
     },
     "categorias":{
         "name":"Nombre",
@@ -40,8 +42,10 @@
     "metodos-pago":{
         "name":"Nombre",
         "description":"Descripción",
+        "abreviacion":"Abreviación",
+        "activo":"Activo",
         "add-metodo-pago": "Agregar Metodo de Pago",
-        "edit-category": "Editar Metodo de Pago"
+        "edit-metodo-pago": "Editar Metodo de Pago"
 
     },
     "productos":{
@@ -51,14 +55,138 @@
         "categoria":"Categoría",
         "estado":"Estado",
         "add-producto": "Agregar Producto",
-        "edit-category": "Editar Producto"
+        "edit-producto": "Editar Producto",
+        "codigo-barras":"Código de Barras"
+
     },
+
+    "unidades-medida":{
+        "name":"Nombre",
+        "abreviatura":"Abreviación",
+        "activo":"Activo",
+        "add-metodo-pago": "Agregar Unidad de Medida",
+        "edit-category": "Editar Unidad de Medida"
+
+    },
+
+    "proveedores":{
+        "name":"Nombre",
+        "telefono":"Teléfono",
+        "email":"Correo Electrónico",
+        "direccion":"Dirección",
+        "activo":"Activo",
+        "add-proveedor": "Agregar Proveedor",
+        "edit-proveedor": "Editar Proveedor"
+
+    },
+
+    "compras":{
+        "proveedor":"Proveedor",
+        "fechaHora":"Fecha/Hora",
+        "total":"Total",
+        "usuario": "Usuario",
+        "estado":"Estado",
+        "add-compra": "Agregar Compra",
+        "edit-compra": "Editar Compra"
+    },
+
+    "usuarios":{
+        "name":"Nombre de Usuario",
+        "rol":"Rol",
+        "estado":"Estado",
+        "passwordHash":"Contraseña",
+        "add-usuario": "Agregar Usuario",
+        "edit-usuario": "Editar Usuario"
+
+    },
+
+    "ventas":{
+        "fechaHora":"Fecha/Hora",
+        "total":"Total",
+        "metodo-pago":"Método de Pago",
+        "usuario": "Usuario",
+        "estado":"Estado",
+        "add-venta": "Agregar Venta",
+        "edit-venta": "Editar Venta"
+    },
+
+    "otros-movimientos":{
+        "nombre":"Nombre",
+        "es-entrada":"Entrada/Salida",
+        "descripcion":"Descripción",
+        "estado":"Estado",
+        "add-otro-movimiento": "Agregar Otro Movimiento",
+        "edit-otro-movimiento": "Editar Otro Movimiento"
+    },
+
+    "movimientos-inventario":{
+        "tipo-movimiento":"Tipo de Movimiento",
+        "producto":"Producto",
+        "cantidad":"Cantidad",
+        "existencia-anterior":"Existencia Anterior",
+        "existencia-nueva":"Existencia Nueva",
+        "fechaHora":"Fecha/Hora",
+        "usuario": "Usuario",
+        "estado":"Estado",
+        "motivo":"Motivo",
+        "add-movimiento-inventario": "Agregar Movimiento de Inventario",
+        "edit-movimiento-inventario": "Editar Movimiento de Inventario"
+    },
+
+    "apertura-caja":{
+        "usuario": "Usuario",
+        "fechaApertura":"Fecha/Hora Apertura",
+        "monto-inicial":"Monto Inicial",
+        "fechaCierre":"Fecha/Hora Cierre",
+        "monto-final":"Monto Final",
+        "diferencia":"Diferencia",
+        "estado":"Estado",
+        "add-apertura-caja": "Agregar Apertura de Caja",
+        "edit-apertura-caja": "Editar Apertura de Caja"
+    },
+
+    "detalles-compra":{
+        "compra":"Compra",
+        "producto":"Producto",
+        "cantidad":"Cantidad",
+        "precio-unitario":"Precio Unitario",
+        "subtotal":"Subtotal",
+        "add-detalle-compra": "Agregar Detalle de Compra",
+        "edit-detalle-compra": "Editar Detalle de Compra"
+    },
+
+    "detalles-venta":{
+        "venta":"Venta",
+        "producto":"Producto",
+        "cantidad":"Cantidad",
+        "precio-unitario":"Precio Unitario",
+        "subtotal":"Subtotal",
+        "add-detalle-venta": "Agregar Detalle de Venta",
+        "edit-detalle-venta": "Editar Detalle de Venta"
+    },
+
+    "punto-venta":{
+        "sin-productos":"No hay productos agregados"
+    },
+
     "labels":{
         "num-records":"Número de registros",
-        "required-field":"El campo es obligatorio"
+        "required-field":"El campo es obligatorio",
+        "activo":"Activo",
+        "inactivo":"Inactivo",
+        "total":"Total"
+        
     },
     "messages":{
         "sucess":"Exito",
-        "save-sucess":"Se guardo exitosamente"
+        "save-sucess":"Se guardo exitosamente",
+        "error":"Error",
+        "no-products":"Error al realizar la acción"
+    },
+
+    "comandos":{
+        "comando":"ng g i _class/metodo-pago",
+        "comando2":"ng g s _service/metodo-pago",
+        "comando3":"ng g c metodos-pago/metodo-pago-modal.component"
     }
 }

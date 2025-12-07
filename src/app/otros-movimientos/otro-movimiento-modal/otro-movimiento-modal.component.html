@@ -1,0 +1,79 @@
+<div class="modal modal-background fade" id="staticBackdrop" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+  aria-hidden="true" [class.show]="showModal"
+  [style.display]="showModal ? 'block' : 'none'">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          {{ modalTitle | transloco }}
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close" (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="formData">
+
+          <!-- Nombre -->
+          <div class="mb-3">
+            <label class="form-label">{{ "otros-movimientos.nombre" | transloco }}</label>
+            <input type="text" class="form-control" formControlName="name" id="name">
+            <div *ngIf="formData.get('name')?.invalid && formData.get('name')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Es entrada -->
+          <div class="mb-3">
+            <label class="form-label">{{ "otros-movimientos.es-entrada" | transloco }}</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+                     formControlName="esEntrada" id="esEntrada">
+              <label class="form-check-label" for="esEntrada">
+                {{ formData.get('esEntrada')?.value ? 'Entrada' : 'Salida' }}
+              </label>
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <div class="mb-3">
+            <label class="form-label">{{ "otros-movimientos.descripcion" | transloco }}</label>
+            <textarea class="form-control" rows="3"
+                      formControlName="descripcion" id="descripcion"></textarea>
+            <div *ngIf="formData.get('descripcion')?.invalid && formData.get('descripcion')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Estado -->
+          <div class="mb-3">
+            <label class="form-label">{{ "otros-movimientos.estado" | transloco }}</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+                     formControlName="activo" id="activo">
+              <label class="form-check-label" for="activo">
+                {{ formData.get('activo')?.value
+                    ? ('labels.activo' | transloco)
+                    : ('labels.inactivo' | transloco) }}
+              </label>
+            </div>
+          </div>
+
+          <input type="hidden" formControlName="id" id="id">
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveModal()">
+          {{ "buttons.save" | transloco }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,1 +1,139 @@
-<p>punto-venta works!</p>
+<div class="container text-center">
+    <div class="row">
+        <!-- Totales / carrito -->
+        <div class="col-sm-6">
+            <div class="card" style="height: 280px; margin-top: 10px; overflow-y: auto;">
+                <div class="card-body">
+                    <div *ngFor="let prod of productosAgregados" class="item-carrito">
+  <!-- Nombre -->
+  <div class="carrito-nombre">
+    {{ prod.nombre }}
+  </div>
+
+  <!-- Controles cantidad -->
+  <div class="carrito-controles">
+    <button
+      class="btn-cantidad"
+      (click)="disminuirCantidad(prod)">
+      −
+    </button>
+
+    <span class="carrito-cantidad">
+      x{{ prod.cantidad || 1 }}
+    </span>
+
+    <button
+      class="btn-cantidad"
+      (click)="incrementarCantidad(prod)">
+      +
+    </button>
+  </div>
+
+  <!-- Total + eliminar -->
+  <div class="carrito-total">
+    <span class="carrito-precio">
+      $ {{ prod.precio * (prod.cantidad || 1) | number:'1.2-2' }}
+    </span>
+
+    <button
+      class="btn-delete-producto"
+      (click)="eliminarProducto(prod)">
+      −
+    </button>
+  </div>
+</div>
+
+                    <div *ngIf="productosAgregados.length === 0" class="text-muted">
+                        {{ "punto-venta.sin-productos" | transloco }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Productos por categoría -->
+        <div class="col-sm-6">
+            <div class="card" style="height: 280px; margin-top: 10px; overflow-y: auto;">
+                <div class="card-body">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item" *ngFor="let catP of categoriasProductos">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    [attr.data-bs-target]="'#flush-collapseCat' + catP.id" aria-expanded="false"
+                                    [attr.aria-controls]="'flush-collapseCat' + catP.id">
+                                    {{ catP.nombre }}
+                                </button>
+                            </h2>
+                            <div [id]="'flush-collapseCat' + catP.id" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul class="lista-productos">
+                                        <li class="item-producto" *ngFor="let prod of catP.producto">
+
+                                            <div class="info-producto">
+                                                <span class="nombre-producto">{{ prod.nombre }}</span>
+                                                <span class="precio-producto">
+                                                    MX$ {{ prod.precio | number:'1.2-2' }}
+                                                </span>
+                                            </div>
+
+                                            <button class="btn btn-sm btn-add-producto" (click)="agregarProducto(prod)">
+                                                +
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> <!-- fin *ngFor categorias -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total + método de pago + Pagar -->
+    <div class="row" style="margin-top: 10px;">
+        <!-- Total (card grande a la izquierda) -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body text-start">
+                    <label class="lbl-total">{{ "labels.total" | transloco }}</label>
+                    <label class="lbl-monto">
+                        $ {{ totalVenta | number:'1.2-2' }}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Método de pago -->
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <label class="form-label">
+                        {{ "ventas.metodo-pago" | transloco }}
+                    </label>
+                    <select class="form-select cambioo" [(ngModel)]="metodoPagoSeleccionado">
+                        <option [ngValue]="null">--- Seleccione ---</option>
+                        <option *ngFor="let mp of metodosPago" [ngValue]="mp.id">
+                            {{ mp.id }} - {{ getMetodoPagoLabel(mp) }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagar (card con fondo detrás del botón) -->
+        <div class="col-sm-3">
+            <div class="card d-flex align-items-center justify-content-center">
+                <div class="card-body d-flex justify-content-center">
+                    <button class="btn btn-info" (click)="pagar()">
+                        {{ "buttons.pay" | transloco }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-message [showModal]="showModalMessage" [messageTitle]="modalTitleMessage" [messageBody]="messageBody"
+    (aceptar)="closeMessageModal($event)" [uri]="uri">
+</app-message>

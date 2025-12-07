@@ -1,1 +1,55 @@
-<p>proveedores works!</p>
+<button type="button" class="btn btn-link add-button" (click)="openAddModal()">
+  {{"buttons.add-new" | transloco}}
+</button>
+<br>
+<br>
+<table class="table table-striped diseñoTabla">
+  <thead>
+    <tr>
+      <th scope="col">{{ "proveedores.name"    | transloco }}</th>
+      <th scope="col">{{ "proveedores.telefono"   | transloco }}</th>
+      <th scope="col">{{ "proveedores.email"   | transloco }}</th>
+      <th scope="col">{{ "proveedores.direccion" | transloco }}</th>
+      <th scope="col">{{ "proveedores.activo"  | transloco }}</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of proveedores">
+      <td>{{ p.name }}</td>
+      <td>{{ p.telefono }}</td>
+      <td>{{ p.email }}</td>
+      <td>{{ p.direccion }}</td>
+      <td>
+        {{ p.activo ? ('labels.activo' | transloco) : ('labels.inactivo' | transloco) }}
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-link edit-button"
+          (click)="openEditModal(p)">
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="num-records">
+  {{ proveedores.length }} {{"labels.num-records" | transloco}}
+</div>
+
+<app-proveedor-modal
+  [showModal]="showModal"
+  [modalTitle]="modalTitle"
+  [data]="proveedor"
+  (closeModalEvent)="closeModalEvent()"
+  (saveEvent)="saveEvent($event)">
+</app-proveedor-modal>
+
+<app-message
+  [showModal]="showModalMessage"
+  [messageTitle]="modalTitleMessage"
+  [messageBody]="messageBody"
+  (aceptar)="closeMessageModal($event)"
+  [uri]="uri">
+</app-message>

@@ -1,59 +1,85 @@
+// src/app/productos/productos.ts
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../_class/producto';
-import { AppReport } from '../util/app-report';
+import { Categoria } from '../_class/categoria';
+import { UnidadMedida } from '../_class/unidad-medida';
+
 import { ProductoService } from '../_service/producto.service';
-import { Router } from '@angular/router';
+import { CategoriaService } from '../_service/categoria.service';
+import { UnidadMedidaService } from '../_service/unidad-medida.service';
 
 @Component({
   selector: 'app-productos',
-  standalone: false,
   templateUrl: './productos.html',
-  styleUrls: ['./productos.css', '../app.css']
+  styleUrls: ['./productos.css', '../app.css'],
+  standalone: false
 })
-export class Productos extends AppReport implements OnInit {
-  productos: Producto[] = [];
-  showModal = false;
-  modalTitle = "";
-  producto: Producto | null = null;
-  uri = "catalogos-generales/productos";
+export class Productos implements OnInit {
 
-  constructor(private service: ProductoService, router: Router) {
-    super(router);
-   }
+  productos: Producto[] = [];
+  producto: Producto | null = null;
+
+  categorias: Categoria[] = [];
+  unidadesMedida: UnidadMedida[] = [];
+
+  showModal = false;
+  modalTitle = '';
+
+  showModalMessage = false;
+  modalTitleMessage = '';
+  messageBody = '';
+  uri = '';
+
+  constructor(
+    private productoService: ProductoService,
+    private categoriaService: CategoriaService,
+    private unidadMedidaService: UnidadMedidaService
+  ) { }
 
   ngOnInit(): void {
-    this.productos = this.service.getAll();
+    this.productos = this.productoService.getAll();
+    // catálogos para el modal
+    this.categorias = this.categoriaService.getCategorias();
+    this.unidadesMedida = this.unidadMedidaService.getAll();
   }
 
-  openAddModal() {
+  openAddModal(): void {
+    this.producto = null;
     this.modalTitle = "productos.add-producto";
-    this.producto = null;
     this.showModal = true;
   }
-  openEditModal(producto: Producto) {
+
+  openEditModal(p: Producto): void {
+    this.producto = p;
     this.modalTitle = "productos.edit-producto";
-    this.producto = producto;
     this.showModal = true;
   }
 
-  closeModalEvent() {
+  closeModal(): void {
     this.showModal = false;
-    this.producto = null;
-    this.modalTitle = "";
   }
 
-  saveEvent(producto: Producto) {
-    if (producto.id) {
-      // Edit existing categoria
-      this.service.edit(producto);
+  saveEvent(value: Producto): void {
+    if (value.id === 0) {
+      this.productoService.add(value);
+      this.modalTitleMessage = 'messages.sucess';
+      this.messageBody = 'messages.save-sucess';
     } else {
-      // Add new categoria
-      this.service.add(producto);
+      this.productoService.edit(value);
+      this.modalTitleMessage = 'messages.sucess';
+      this.messageBody = 'messages.save-sucess';
     }
-    this.closeModalEvent();
+    this.productos = this.productoService.getAll();
+    this.showModal = false;
     this.showModalMessage = true;
-    this.modalTitleMessage = "messages.success";
-    this.messageBody = "messages.save-success";
   }
 
+  delete(id: number): void {
+    this.productoService.deleteProducto(id);
+    this.productos = this.productoService.getAll();
+  }
+
+  closeMessageModal(_event: string): void {
+    this.showModalMessage = false;
+  }
 }

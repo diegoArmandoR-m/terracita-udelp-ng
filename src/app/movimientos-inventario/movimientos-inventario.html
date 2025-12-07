@@ -1,0 +1,62 @@
+<button type="button" class="btn btn-link add-button" (click)="openAddModal()">
+  {{ "buttons.add-new" | transloco }}
+</button>
+<br>
+<br>
+
+<table class="table table-striped diseñoTabla">
+  <thead>
+    <tr>
+      <th scope="col">{{ "movimientos-inventario.tipo-movimiento"    | transloco }}</th>
+      <th scope="col">{{ "movimientos-inventario.producto"           | transloco }}</th>
+      <th scope="col">{{ "movimientos-inventario.cantidad"           | transloco }}</th>
+      <th scope="col">{{ "movimientos-inventario.existencia-anterior"| transloco }}</th>
+      <th scope="col">{{ "movimientos-inventario.existencia-nueva"   | transloco }}</th>
+      <th scope="col">{{ "movimientos-inventario.fechaHora"          | transloco }}</th>
+      <th scope="col">{{ "movimientos-inventario.usuario"            | transloco }}</th>
+      <th scope="col">{{ "movimientos-inventario.motivo"             | transloco }}</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of movimientos">
+      <td>{{ m.idOtroMovimiento?.name }}</td>
+      <td>{{ m.idProducto?.nombre }}</td>
+      <td>{{ m.cantidad }}</td>
+      <td>{{ m.existenciaAnterior }}</td>
+      <td>{{ m.existenciaActual }}</td>
+      <td>{{ m.fechaHora | date:'dd/MM/yyyy HH:mm' }}</td>
+      <!-- En la tabla mostramos el id del usuario -->
+      <td>{{ m.idUsuario?.id }}</td>
+      <td>{{ m.motivo }}</td>
+      <td>
+        <button type="button"
+                class="btn btn-link edit-button"
+                (click)="openEditModal(m)"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="num-records">
+  {{ movimientos.length }} {{ "labels.num-records" | transloco }}
+</div>
+
+<app-movimiento-inventario-modal
+  [showModal]="showModal"
+  [modalTitle]="modalTitle"
+  [data]="movimiento"
+  [productos]="productos"
+  [otrosMovimientos]="otrosMovimientos"
+  [usuarios]="usuarios"
+  (closeModalEvent)="closeModalEvent()"
+  (saveEvent)="saveEvent($event)">
+</app-movimiento-inventario-modal>
+
+<app-message
+  [showModal]="showModalMessage"
+  [messageTitle]="modalTitleMessage"
+  [messageBody]="messageBody"
+  (aceptar)="closeMessageModal($event)"
+  [uri]="uri">
+</app-message>

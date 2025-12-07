@@ -1,0 +1,55 @@
+<button type="button" class="btn btn-link add-button" (click)="openAddModal()">
+  {{ "buttons.add-new" | transloco }}
+</button>
+<br>
+<br>
+
+<table class="table table-striped diseñoTabla">
+  <thead>
+    <tr>
+      <th scope="col">{{ "detalles-compra.compra"          | transloco }}</th>
+      <th scope="col">{{ "detalles-compra.producto"        | transloco }}</th>
+      <th scope="col">{{ "detalles-compra.cantidad"        | transloco }}</th>
+      <th scope="col">{{ "detalles-compra.precio-unitario" | transloco }}</th>
+      <th scope="col">{{ "detalles-compra.subtotal"        | transloco }}</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of detalles">
+      <!-- En tabla: id de compra y nombre del producto -->
+      <td>{{ d.idCompra?.id }}</td>
+      <td>{{ d.idProducto?.nombre }}</td>
+      <td>{{ d.cantidad }}</td>
+      <td>{{ d.precioUnitario }}</td>
+      <td>{{ d.subtotal }}</td>
+      <td>
+        <button type="button"
+                class="btn btn-link edit-button"
+                (click)="openEditModal(d)"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="num-records">
+  {{ detalles.length }} {{ "labels.num-records" | transloco }}
+</div>
+
+<app-detalle-compra-modal
+  [showModal]="showModal"
+  [modalTitle]="modalTitle"
+  [data]="detalle"
+  [compras]="compras"
+  [productos]="productos"
+  (closeModalEvent)="closeModalEvent()"
+  (saveEvent)="saveEvent($event)">
+</app-detalle-compra-modal>
+
+<app-message
+  [showModal]="showModalMessage"
+  [messageTitle]="modalTitleMessage"
+  [messageBody]="messageBody"
+  (aceptar)="closeMessageModal($event)"
+  [uri]="uri">
+</app-message>

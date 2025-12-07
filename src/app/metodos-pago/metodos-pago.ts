@@ -53,9 +53,11 @@ export class MetodosPago extends AppReport implements OnInit {
     }
     this.closeModalEvent();
     this.showModalMessage = true;
-    this.modalTitleMessage = "messages.success";
-    this.messageBody = "messages.save-success";
+    this.modalTitleMessage = "messages.sucess";
+    this.messageBody = "messages.save-sucess";
   }
 
-
+  override closeMessageModal(_value: string) {
+    this.showModalMessage = false;
+  }
 }

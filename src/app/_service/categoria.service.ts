@@ -1,40 +1,64 @@
+// src/app/_service/categoria.service.ts
 import { Injectable } from '@angular/core';
 import { Categoria } from '../_class/categoria';
+import { ProductoService } from './producto.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService {
-  categoria:Categoria[]=[
-    {id:1,nombre:"Bebida",descripcion:"bebida fria"},
-    {id:2,nombre:"Comida",descripcion:"Para el estomago"},
-    {id:3,nombre:"Postre",descripcion:"Algo dulce"}
+
+  // Igual que UnidadMedidaService: usamos "data"
+  data: Categoria[] = [
+    { id: 1, nombre: "Bebidas",  descripcion: "Bebidas en general",        producto: null },
+    { id: 2, nombre: "Snacks",   descripcion: "Botanas y snacks",          producto: null },
+    { id: 3, nombre: "Limpieza", descripcion: "Productos de limpieza",     producto: null }
   ];
 
-  constructor(){  }
+  constructor(private productoService: ProductoService) { }
 
-  getCategorias(): Categoria[] {
-    return this.categoria;
+  // ===== API estilo UnidadMedidaService =====
+  getAll(): Categoria[] {
+    return this.data;
   }
 
-  getCategoria(id:number): Categoria | undefined {
-
-    return this.categoria.find(cat=>cat.id==id);
+  get(id: number): Categoria | undefined {
+    return this.data.find(cat => cat.id === id);
   }
 
-  addCategoria(categoria:Categoria){
-    this.categoria.push(categoria);
+  addCategoria(value: Categoria): void {
+    value.id = this.data.reduce((max, item) => item.id > max ? item.id : max, 0) + 1;
+    this.data.push(value);
   }
 
-  editCategoria(categoria:Categoria){
-    const index = this.categoria.findIndex(cat => cat.id === categoria.id);
+  editCategoria(value: Categoria): void {
+    const index = this.data.findIndex(cat => cat.id === value.id);
     if (index !== -1) {
-      this.categoria[index] = categoria;
+      this.data[index] = value;
     }
   }
 
-  deleteCategoria(id:number){
-    this.categoria = this.categoria.filter(cat => cat.id !== id);
+  deleteCategoria(id: number): void {
+    this.data = this.data.filter(cat => cat.id !== id);
   }
 
+  // ===== Métodos de compatibilidad (no rompemos tu código viejo) =====
+  getCategorias(): Categoria[] {
+    return this.getAll();
+  }
+
+  getCategoria(id: number): Categoria | undefined {
+    return this.get(id);
+  }
+
+  // Usado por Punto de Venta: categorías con sus productos
+  getCategoriasProductos(): Categoria[] {
+    const productos = this.productoService.getAll();
+
+    // devolvemos nuevas referencias para no ensuciar el arreglo original
+    return this.data.map(cat => ({
+      ...cat,
+      producto: productos.filter(prod => prod.categoria?.id === cat.id)
+    }));
+  }
 }

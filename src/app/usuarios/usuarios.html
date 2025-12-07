@@ -1,1 +1,52 @@
-<p>usuarios works!</p>
+<button type="button" class="btn btn-link add-button" (click)="openAddModal()">
+  {{"buttons.add-new" | transloco}}
+</button>
+<br>
+<br>
+
+<table class="table table-striped diseñoTabla">
+  <thead>
+    <tr>
+      <th scope="col">{{ "usuarios.name"  | transloco }}</th>
+      <th scope="col">{{ "usuarios.rol"   | transloco }}</th>
+      <th scope="col">{{ "usuarios.estado"| transloco }}</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of usuarios">
+      <td>{{ u.name }}</td>
+      <td>{{ u.rol }}</td>
+      <td>
+        {{ u.estado ? ('labels.activo' | transloco) : ('labels.inactivo' | transloco) }}
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-link edit-button"
+          (click)="openEditModal(u)">
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="num-records">
+  {{ usuarios.length }} {{ "labels.num-records" | transloco }}
+</div>
+
+<app-usuario-modal
+  [showModal]="showModal"
+  [modalTitle]="modalTitle"
+  [data]="usuario"
+  (closeModalEvent)="closeModalEvent()"
+  (saveEvent)="saveEvent($event)">
+</app-usuario-modal>
+
+<app-message
+  [showModal]="showModalMessage"
+  [messageTitle]="modalTitleMessage"
+  [messageBody]="messageBody"
+  (aceptar)="closeMessageModal($event)"
+  [uri]="uri">
+</app-message>

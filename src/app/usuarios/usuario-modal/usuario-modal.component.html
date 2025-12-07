@@ -1,0 +1,95 @@
+<div class="modal modal-background fade"
+     id="staticBackdrop"
+     data-bs-backdrop="static"
+     data-bs-keyboard="false"
+     tabindex="-1"
+     aria-labelledby="staticBackdropLabel"
+     aria-hidden="true"
+     [class.show]="showModal"
+     [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          {{ modalTitle | transloco }}
+        </h1>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="formData">
+
+          <!-- Nombre -->
+          <div class="mb-3">
+            <label class="form-label">{{ "usuarios.name" | transloco }}</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="name"
+                   id="name">
+            <div *ngIf="formData.get('name')?.invalid && formData.get('name')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- PasswordHash -->
+          <div class="mb-3">
+            <label class="form-label">{{ "usuarios.passwordHash" | transloco }}</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="passwordHash"
+                   id="passwordHash">
+            <div *ngIf="formData.get('passwordHash')?.invalid && formData.get('passwordHash')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Rol -->
+          <div class="mb-3">
+            <label class="form-label">{{ "usuarios.rol" | transloco }}</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="rol"
+                   id="rol">
+            <div *ngIf="formData.get('rol')?.invalid && formData.get('rol')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Estado -->
+          <div class="mb-3">
+            <label class="form-label">{{ "usuarios.estado" | transloco }}</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input"
+                     type="checkbox"
+                     role="switch"
+                     formControlName="estado"
+                     id="estado">
+              <label class="form-check-label" for="estado">
+                {{ formData.get('estado')?.value
+                    ? ('labels.activo' | transloco)
+                    : ('labels.inactivo' | transloco) }}
+              </label>
+            </div>
+          </div>
+
+          <input type="hidden" formControlName="id" id="id">
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-primary"
+                (click)="saveModal()">
+          {{ "buttons.save" | transloco }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

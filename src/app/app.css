@@ -4,19 +4,112 @@
     width: 100%;
 }
 .add-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;                 /* espacio entre icono y texto */
+
+    padding: 15px 20px;        /* tamaño de la “pastilla” */
+    border-radius: 999px;     /* súper redondeado */
+    border: none;
+
+    background-color: #008d62;  /* verde botón */
+    color: #ffffff;             /* texto blanco */
+    font-weight: 500;
+    cursor: pointer;
+
+    text-decoration: none;      /* por si algo lo quiere subrayar */
+}
+
+/* Icono “+” a la izquierda (usa tu SVG) */
+.add-button::before {
+    content: "";
+    width: 18px;
+    height: 18px;
     background: url('../assets/icons/add.circle.svg') no-repeat center;
-    width: 22px;
-    height: 22px;
-    position: absolute;
+    background-size: contain;
+}
+
+.add-button:hover,
+.add-button:focus {
+    background-color: #00986c;  /* un poco más claro */
+    outline: none;
 }
 
 .edit-button {
-    background: url('../assets/icons/edit-circle.svg') no-repeat center;
-    width: 22px;
-    height: 22px;
-    position: absolute;
+    /* ícono centrado */
+    background: #2ca880 url('../assets/icons/edit-circle.svg') no-repeat center;
+    background-size: 60%;        /* ajusta el tamaño del ícono dentro del botón */
+
+    width: 33px;                 /* un poco más grande que antes */
+    height: 33px;
+
+    border-radius: 8px;          /* esquinas redondeadas tipo cuadrito */
+    border: none;
+    cursor: pointer;
+
+    /* quita estilos de btn-link si lo usas */
+    text-decoration: none;
+    padding: 0;
+}
+
+/* hover opcional */
+.edit-button:hover {
+    background-color: #00986c;
 }
 .modal-background{
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.barraSuperior{
+    background-color:#008259;
+    color: white;
+    --bs-bg-opacity: 1;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: white;
+    text-decoration: none;
+    background-color: #015f42;
+}
+
+.diseñoTabla {
+  background-color: rgba(87, 189, 158, 0.18);
+  border-collapse: collapse;
+}
+
+.diseñoTabla thead th {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  color: #ffffff;
+  font-weight: 600;
+  background-color: rgb(3 141 98);
+}
+
+.diseñoTabla td,
+.diseñoTabla th {
+  padding: 12px 16px;
+  vertical-align: middle;
+  color: #12313a;
+  border: none;
+}
+
+/* última columna (botón editar) más compacta */
+.diseñoTabla td:last-child {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* ==== Sobrescribir striping de Bootstrap ==== */
+/* OJO: borra las reglas anteriores donde usábamos
+   .diseñoTabla tbody tr:nth-child(...) */
+
+.table-striped.diseñoTabla > tbody > tr:nth-of-type(odd) > * {
+  background-color: rgba(87, 189, 158, 0.12);
+}
+
+.table-striped.diseñoTabla > tbody > tr:nth-of-type(even) > * {
+  background-color: rgba(87, 189, 158, 0.06);
+}
+
+.table-striped.diseñoTabla > tbody > tr:hover > * {
+  background-color: rgba(87, 189, 158, 0.22);
+}

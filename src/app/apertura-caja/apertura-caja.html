@@ -1,1 +1,60 @@
-<p>apertura-caja works!</p>
+<button type="button" class="btn btn-link add-button" (click)="openAddModal()">
+  {{ "buttons.add-new" | transloco }}
+</button>
+<br>
+<br>
+
+<table class="table table-striped diseñoTabla">
+  <thead>
+    <tr>
+      <th scope="col">{{ "apertura-caja.usuario"        | transloco }}</th>
+      <th scope="col">{{ "apertura-caja.fechaApertura"  | transloco }}</th>
+      <th scope="col">{{ "apertura-caja.monto-inicial"  | transloco }}</th>
+      <th scope="col">{{ "apertura-caja.fechaCierre"    | transloco }}</th>
+      <th scope="col">{{ "apertura-caja.monto-final"    | transloco }}</th>
+      <th scope="col">{{ "apertura-caja.diferencia"     | transloco }}</th>
+      <th scope="col">{{ "apertura-caja.estado"         | transloco }}</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of aperturas">
+      <!-- En tabla mostramos el ID de usuario (como en compras) -->
+      <td>{{ a.idUsuario?.id }}</td>
+      <td>{{ a.fechaApertura | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>{{ a.montoInicial }}</td>
+      <td>{{ a.fechaCierre   | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>{{ a.montoFinal }}</td>
+      <td>{{ a.diferencia }}</td>
+      <td>
+        {{ a.estado ? ('labels.activo' | transloco) : ('labels.inactivo' | transloco) }}
+      </td>
+      <td>
+        <button type="button"
+                class="btn btn-link edit-button"
+                (click)="openEditModal(a)"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="num-records">
+  {{ aperturas.length }} {{ "labels.num-records" | transloco }}
+</div>
+
+<app-apertura-caja-modal
+  [showModal]="showModal"
+  [modalTitle]="modalTitle"
+  [data]="apertura"
+  [usuarios]="usuarios"
+  (closeModalEvent)="closeModalEvent()"
+  (saveEvent)="saveEvent($event)">
+</app-apertura-caja-modal>
+
+<app-message
+  [showModal]="showModalMessage"
+  [messageTitle]="modalTitleMessage"
+  [messageBody]="messageBody"
+  (aceptar)="closeMessageModal($event)"
+  [uri]="uri">
+</app-message>

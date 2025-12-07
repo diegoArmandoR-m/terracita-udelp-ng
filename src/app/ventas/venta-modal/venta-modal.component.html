@@ -1,0 +1,86 @@
+<div class="modal modal-background fade" id="staticBackdrop" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+  aria-hidden="true" [class.show]="showModal"
+  [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          {{ modalTitle | transloco }}
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close" (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="formData">
+
+          <!-- Método de pago -->
+          <div class="mb-3">
+            <label class="form-label">{{ "ventas.metodo-pago" | transloco }}</label>
+            <select class="form-select" formControlName="metodoPago" id="metodoPago">
+              <option value="-1">--- Seleccione ---</option>
+              <option *ngFor="let m of metodosPago" [value]="m.id">
+                {{ m.id }} - {{ m.nombre }}
+              </option>
+            </select>
+            <div *ngIf="formData.get('metodoPago')?.invalid && formData.get('metodoPago')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Total -->
+          <div class="mb-3">
+            <label class="form-label">{{ "ventas.total" | transloco }}</label>
+            <input type="text" class="form-control" formControlName="total" id="total">
+            <div *ngIf="formData.get('total')?.invalid && formData.get('total')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Usuario -->
+          <div class="mb-3">
+            <label class="form-label">{{ "ventas.usuario" | transloco }}</label>
+            <select class="form-select" formControlName="usuario" id="usuario">
+              <option value="-1">--- Seleccione ---</option>
+              <option *ngFor="let u of usuarios" [value]="u.id">
+                {{ u.id }} - {{ u.name }}
+              </option>
+            </select>
+            <div *ngIf="formData.get('usuario')?.invalid && formData.get('usuario')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Estado -->
+          <div class="mb-3">
+            <label class="form-label">{{ "ventas.estado" | transloco }}</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+                     formControlName="estado" id="estado">
+              <label class="form-check-label" for="estado">
+                {{ formData.get('estado')?.value
+                    ? ('labels.activo' | transloco)
+                    : ('labels.inactivo' | transloco) }}
+              </label>
+            </div>
+          </div>
+
+          <input type="hidden" formControlName="id" id="id">
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveModal()">
+          {{ "buttons.save" | transloco }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

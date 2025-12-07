@@ -1,1 +1,18 @@
-<p>inventario works!</p>
+<table class="table table-striped diseñoTabla">
+  <thead>
+    <tr>
+      <th scope="col">{{ "productos.name" | transloco }}</th>
+      <th scope="col">{{ "productos.existencia" | transloco }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of inventario">
+      <td>{{ i.producto?.nombre }}</td>
+      <td>{{ i.producto?.existencia }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="num-records">
+  {{ inventario.length }} {{ "labels.num-records" | transloco }}
+</div>

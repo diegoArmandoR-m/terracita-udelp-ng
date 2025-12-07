@@ -52,8 +52,8 @@ export class Categorias extends AppReport implements OnInit{
     }
     
     this.closeModalEvent();
-    this.showModalMessage =true;
-    this.modalTitleMessage = "messages.sucess";
-    this.messageBody = "messages.save-sucess";
+    this.showModalMessage = true;
+    this.modalTitleMessage = 'messages.sucess';
+    this.messageBody = 'messages.save-sucess';
   }
 }

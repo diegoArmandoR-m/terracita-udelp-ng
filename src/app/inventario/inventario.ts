@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+// src/app/inventario/inventario.ts
+import { Component, OnInit } from '@angular/core';
+import { Inventario as InventarioItem } from '../_class/inventario';
+import { InventarioService } from '../_service/inventario.service';
 
 @Component({
   selector: 'app-inventario',
-  imports: [],
+  standalone: false,
   templateUrl: './inventario.html',
-  styleUrl: './inventario.css'
+  styleUrls: ['./inventario.css', '../app.css'],
 })
-export class Inventario {
+export class Inventarios implements OnInit {
 
+  inventario: InventarioItem[] = [];
+
+  constructor(private inventarioService: InventarioService) { }
+
+  ngOnInit(): void {
+    // Solo mostramos productos activos
+    this.inventario = this.inventarioService.getAll();
+  }
 }

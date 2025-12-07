@@ -1,0 +1,88 @@
+<div class="modal modal-background fade" id="staticBackdrop" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+  aria-hidden="true" [class.show]="showModal"
+  [style.display]="showModal ? 'block' : 'none'">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          {{ modalTitle | transloco }}
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close" (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="formData">
+
+          <!-- Venta -->
+          <div class="mb-3">
+            <label class="form-label">{{ "detalles-venta.venta" | transloco }}</label>
+            <select class="form-select" formControlName="venta" id="venta">
+              <option value="-1">--- Seleccione ---</option>
+              <option *ngFor="let v of ventas" [value]="v.id">
+                {{ v.id }} - ${{ v.total }}
+              </option>
+            </select>
+            <div *ngIf="formData.get('venta')?.invalid && formData.get('venta')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Producto -->
+          <div class="mb-3">
+            <label class="form-label">{{ "detalles-venta.producto" | transloco }}</label>
+            <select class="form-select" formControlName="producto" id="producto">
+              <option value="-1">--- Seleccione ---</option>
+              <option *ngFor="let p of productos" [value]="p.id">
+                {{ p.id }} - {{ p.nombre }}
+              </option>
+            </select>
+            <div *ngIf="formData.get('producto')?.invalid && formData.get('producto')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Cantidad -->
+          <div class="mb-3">
+            <label class="form-label">{{ "detalles-venta.cantidad" | transloco }}</label>
+            <input type="text" class="form-control" formControlName="cantidad" id="cantidad">
+            <div *ngIf="formData.get('cantidad')?.invalid && formData.get('cantidad')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Precio unitario -->
+          <div class="mb-3">
+            <label class="form-label">{{ "detalles-venta.precio-unitario" | transloco }}</label>
+            <input type="text" class="form-control" formControlName="precioUnitario" id="precioUnitario">
+            <div *ngIf="formData.get('precioUnitario')?.invalid && formData.get('precioUnitario')?.touched"
+                 class="text-danger mt-1">
+              {{ "labels.required-field" | transloco }}
+            </div>
+          </div>
+
+          <!-- Subtotal (solo lectura) -->
+          <div class="mb-3">
+            <label class="form-label">{{ "detalles-venta.subtotal" | transloco }}</label>
+            <input type="text" class="form-control" formControlName="subTotal" id="subTotal" readonly>
+          </div>
+
+          <input type="hidden" formControlName="id" id="id">
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveModal()">
+          {{ "buttons.save" | transloco }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
